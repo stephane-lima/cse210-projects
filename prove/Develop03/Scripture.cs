@@ -1,107 +1,84 @@
 using System;
-using System.Collections.Generic;
+//This class will keep track of the reference and text of the scripture. It will hide words and get the rendered text.
 
-class Scripture
+public class Scripture
 {
-    static void Main(string[] args)
-    {
-    // Console.WriteLine("Hello Develop03 World!");
-    Reference reference = new Reference();
-    Random _randomWord = new Random();
-    string _userInput;
-    string _renderedText = "";
-    string _verseContent= reference.GetVerseContent();
-    string[] _words = _verseContent.Split(" ");
-    string[] _randomList = _verseContent.Split(" ");
-    // string _text;
-    // string _renderedWord = "";
+    private List<Word> _wordsList = new List<Word>();
+    private List<int> _indexList = new List<int>();
+    private Reference _reference;
+    private bool _everythingIsHidden;
+    private int _wordHiddenCount = 0;
+    private string _scriptureText;
+    private int _randomIndex;
+    private int _index;
 
-    // Reference reference = new Reference();
+    public Scripture(string scripture, Reference reference)
+    {
+        _scriptureText = scripture;
+        _reference = reference;
+    }
     
-    Console.Write(reference.GenerateReference());
-    // Console.WriteLine(reference.GetVerseContent());
-    Console.WriteLine(_verseContent);
-    Console.WriteLine();
-    Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-    _userInput = Console.ReadLine();
-
-
-    while(_userInput != "quit")
+    //Transform scripture in words list.
+    public void WordList()
     {
-        Console.Clear();
-        
-        HideWords();
-
-        Console.Write(reference.GenerateReference());
-        Console.WriteLine(_renderedText);
-        Console.WriteLine();
-        Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-        _userInput = Console.ReadLine();
-
-        _renderedText = "";
-        // _renderedWord = "";
-
+        foreach (string word in _scriptureText.Split(" "))
+        {
+            Word words = new Word(word);
+            _wordsList.Add(words);
+        }
     }
-    string HideWords()
+    
+    //Populate indexes to not repeat the indexes while hiding words.
+    public List<int> Populate()
     {
-        // for (int k = 0; k < 3; k++) {
-        int index = _randomWord.Next(0, _words.Length);
-        string _prompt = _words[index];
-        Console.WriteLine(_prompt);
-        
-        for(int i = 0; i < _words.Length; i++) 
-        {   
-            if(_words[i] == _prompt && _randomList[index] == _words[index]) 
+        for (int i = 0; i < _scriptureText.Split(" ").Count(); i++)
+        {
+            _indexList.Add(i);
+        }
+        return _indexList;
+    }
+    
+    //Hide each word and does not repeat 
+    public void HideWords()
+    {
+        Random random = new Random();
+        for (int i = 0; i < 3; i++)
+        {
+            if (_indexList.Count == 0)
             {
-                // for(int k = 0; k < words[i].Length; k++) 
-                foreach(char letter in _words[i]) 
-                {
-                    // if(letter.ToString() == "_ ") {
-                    //     continue;
-                    // }
-                    // else{
-                        // _renderedWord += "_ ";
-                        // _words[i] = _renderedWord;
-                    _words[i] = _words[i].Replace(letter.ToString(), "_ ");
-                }
+                Populate();
             }
-            _renderedText += $" {_words[i]}";
-        }       
-        return _renderedText; 
+            
+            _randomIndex = random.Next(_indexList.Count);
+            _index = _indexList[_randomIndex];
+            _indexList.RemoveAt(_randomIndex);
+            _wordsList[_index].Hidden();
+            
+            if (_wordsList[_index].GetHidden() == true)
+            {
+                _wordHiddenCount++;
+            }
+        }
     }
-        //_renderedText += $" {_words[i]}";
+    
+    //Display scripture.
+    public void Display()
+    {
+        Console.Write($"{_reference.GetBook()} {_reference.GetChapter()}:{_reference.GetInitialVerse()}-{_reference.GetEndVerse()} - ");
         
-        // int index = _randomWord.Next(0, _words.Length);
-        // string _prompt = _words[index];
-        // Console.WriteLine(_prompt);
-        
-        // for(int i = 0; i < _words.Length; i++) 
-        //     {
-        //         if(_words[i] == _prompt && _randomList[index] == _words[index]) 
-        //         {
-        //             // for(int k = 0; k < words[i].Length; k++) 
-        //             foreach(char letter in _words[i]) 
-        //             {
-        //                 // if(letter.ToString() == "_ ") {
-        //                 //     continue;
-        //                 // }
-        //                 // else{
-        //                     // _renderedWord += "_ ";
-        //                     // _words[i] = _renderedWord;
-        //                     _words[i] = _words[i].Replace(letter.ToString(), "_ ");
-        //                 // }
-        //             }
-        //         }
-        //         _renderedText += $" {_words[i]}";
+        foreach (Word element in _wordsList)
+        {
+            Console.Write($"{element.GetWord()} ");
+        }
+    }
 
-    // public string GetRenderedText()
-    // {
-
-    // }
-
-    // public bool IsCompletelyHidden()
-    // {
-
-    // }
+    //If all words are hidden, the value is false. It will be used to finish the program when all words are hidden.
+    public bool EverythingIsHidden()
+    {
+        _everythingIsHidden = _wordsList.Any(word => word.GetHidden() == false);
+        return _everythingIsHidden;
     }
 }
+
+
+

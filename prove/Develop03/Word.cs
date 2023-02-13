@@ -1,32 +1,32 @@
 using System;
+//This class will keep track of a single word, whether it is hidden or shown. 
 
-public class Word {
-
-    // Random _randomWord = new Random();
-    Scripture scripture = new Scripture();
+public class Word
+{
     private string _word;
-    private bool _hidden;
+    private bool _isHidden;
 
-    // private int _index = _randomWord.Next(0, _words.Length);
-    // private string _prompt = _words[index];
+    public Word(string word)
+    {
+        _word = word;
+        _isHidden = false;
+    }
 
-    // public string Hide() 
-    // {
-        
-    // }
+    //It will be used for hiding words using '_'.
+    public void Hidden()
+    {
+        _word = new string('_', _word.Length);
+        _isHidden = true;
+    }
 
-    // public string Show()
-    // {
+    //Getters and Setters   
+    public bool GetHidden()
+    {
+        return _isHidden;
+    }
 
-    // }
-
-    // public bool IsHidden() 
-    // {
-
-    // }
-
-    // public string GetRenderedText() 
-    // {
-        
-    // }
+    public string GetWord()
+    {
+        return _word;
+    }
 }

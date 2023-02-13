@@ -1,28 +1,47 @@
 using System;
+using System.IO;
+//This class will keep track the book, chapter and verses.
 
-public class Reference {
+public class Reference
+{
+    private string _book;
+    private string _chapter;
+    private string _initVerse;
+    private string _endVerse;
 
-    private string _book = "Proverbs";
-    private string _chapter = "3";
-    private string _startVerse = "5";
-    private string _endVerse = "6";
-    private string _verseContent = "Trust in the Lord with all thine heart and lean not unto thine own understanding; in all thy was acknowledge him, and he shall direct thy paths.";
-    private string _reference;
-
-    public string GenerateReference() 
+    //Use it if the scripture has only one verse.
+    public Reference(string book, string chapter, string initVerse)
     {
-        _reference = _book + " " + _chapter + ":" + _startVerse + "-" + _endVerse + " ";
-        return _reference;
+        _book = book;
+        _initVerse = initVerse;
+        _chapter = chapter;
     }
 
-    public string GetVerseContent() 
+    //Use it if the scripture has more than one verse.
+    public Reference(string book, string chapter, string initVerse, string endVerse)
     {
-        return _verseContent;
+        _book = book;
+        _initVerse = initVerse;
+        _chapter = chapter;
+        _endVerse = endVerse;
     }
 
-    // public void SetVerseContent(string verseContent) 
-    // {
-    //     _verseContent = verseContent;
-    // }
-
+    //Getters and Setters
+    public string GetBook()
+    {
+        return _book;
+    }
+    public string GetChapter()
+    {
+        return _chapter;
+    }
+    public string GetInitialVerse()
+    {
+        return _initVerse;
+    }
+    public string GetEndVerse()
+    {
+        return _endVerse;
+    }
 }
+

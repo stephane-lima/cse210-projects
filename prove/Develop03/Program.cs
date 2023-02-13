@@ -1,94 +1,32 @@
-// using System;
+using System;
+//This program displays a scripture and through a loop, while the userInput == ""(enter), the program will
+//hide each word of the scripture. When all words are hidden or if the userInput == "quit", the program will end.
 
-// class Program
-// {
-//     static void Main(string[] args)
-//     {
-//         // Console.WriteLine("Hello Develop03 World!");
+class Program
+{
+    static void Main(string[] args)
+    {
+        Reference reference1 = new Reference("Proverbs", "3", "5", "6");
+        Scripture scripture1 = new Scripture("Trust in the Lord with all thine heart and lean not unto thine own understanding; in all thy was acknowledge him, and he shall direct thy paths.", reference1);
+        //Each word of the scripture in a list.
+        scripture1.WordList();
+        string _userInput;
         
-//         // string _verseContent = "Trust in the Lord with all thine heart and lean not unto thine own understanding; in all thy was acknowledge him, and he shall direct thy paths.";
-
-//         // _reference = "${_book} ${_chapter}:${_startVerse}-${_endVerse} ";
-// //         string reference = "Proverbs 3:5-6 ";
-// //         string verse = "Trust in the Lord with all thine heart and lean not unto thine own understanding; in all thy was acknowledge him, and he shall direct thy paths.";
-// //         Random _randomWord = new Random();
-
-// //         Console.Write(reference);
-// //         Console.WriteLine(verse);
-// //         Console.WriteLine();
-// //         Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-// //         string userInput = Console.ReadLine();
-
-// //         string[] words = verse.Split(" ");
-
-// //         while (userInput != "quit") {
-
-// //         }
-        
-// //         string renderedText = "";
-// //         string renderedWord = "";
-
-// //         while(userInput != "quit") {
-            
-// //             renderedText = "";
-// //             renderedWord = "";
-            // // int index = _randomWord.Next(0, words.Length);
-            // // string _prompt = words[index];
-            // // Console.WriteLine(_prompt);
-
-// //             // Console.Clear();
-// //             for(int i = 0; i < words.Length; i++) 
-// //             {
-// //                 if(words[i] == _prompt) 
-// //                 {
-// //                     // for(int k = 0; k < words[i].Length; k++) 
-// //                     foreach(char letter in words[i]) 
-// //                     {
-// //                         if(letter.ToString() == "_") {
-// //                             continue;
-// //                         }
-// //                         else{
-// //                             renderedWord += "_ ";
-// //                             words[i] = renderedWord;
-// //                             // words[i].Replace(letter.ToString(), "_");
-// //                         }
-// //                     }
-// //                 }
-// //                 renderedText += $" {words[i]}";
-// //             }
-
-// //             Console.Clear();
-
-// //             Console.Write(reference);
-// //             Console.WriteLine(renderedText);
-// //             Console.WriteLine();
-// //             Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-// //             userInput = Console.ReadLine();
-// //         }
-//      }
-// }
-
-// class Program
-// {
-//     static void Main(string[] args)
-//     {
-//         Reference reference = new Reference();
-//         Console.Write(reference.GenerateReference());
-//     // Console.WriteLine(reference.GetVerseContent());
-//         Console.WriteLine(_verseContent);
-//         Console.WriteLine();
-//         Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-//         _userInput = Console.ReadLine();
-//     }
-// }
-
-// using System;
-// using System.Collections.Generic;
-
-// class Program
-// {
-//     static void Main(string[] args)
-//     {
-//         Console.WriteLine("dog");
-//     }
-// }
+        do{
+            //Display the scripture.
+            scripture1.Display();
+            Console.Write("\n\nPress enter to hide a word or type 'quit' to exit: ");
+            _userInput = Console.ReadLine();
+            //Hide each word of the scripture.
+            scripture1.HideWords();
+            Console.Clear();   
+            //If all words are hidden, finish the program.
+            if(scripture1.EverythingIsHidden() == false)
+            {  
+                scripture1.Display();
+                break;
+            }
+        //Execute these commands while the _userInput is not equal "quit".
+        }while(_userInput != "quit");
+    }
+}

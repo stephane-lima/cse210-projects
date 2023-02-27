@@ -7,6 +7,7 @@ public class ReflectionActivity : Activity
     private int _index = 0;
     private string _prompt = "";
     private string _question = "";
+    private int _listIndex;
     private List<string> _prompts = new List<string>() {
         "Think of a time when you stood up for someone else.",
         "Think of a time when you did something really difficult.",
@@ -24,6 +25,16 @@ public class ReflectionActivity : Activity
         "What did you learn about yourself through this experience?",
         "How can you keep this experience in mind in the future?"
     };
+    private List<int> _availableIndex = new List<int>();
+
+    public List<int> Populate() 
+    {
+        for (int i = 0; i < _questions.Count; i++) 
+        {
+            _availableIndex.Add(i);
+        }
+        return _availableIndex;
+    }
 
     public string GetRandomPrompt() 
     {
@@ -45,8 +56,15 @@ public class ReflectionActivity : Activity
 
     public string GetRandomQuestion() 
     {
-        _index = _randomQuestion.Next(0, _questions.Count);
-        _question = _questions[_index];
+        if (_availableIndex.Count == 0) {
+            Populate();
+        }
+            
+        _index = _randomQuestion.Next(0, _availableIndex.Count);
+        _listIndex = _availableIndex[_index];
+        _question = _questions[_listIndex];
+        _availableIndex.RemoveAt(_index);
+        
         return _question;
     }
 

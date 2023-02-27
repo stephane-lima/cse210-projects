@@ -26,6 +26,7 @@ public class ListingActivity : Activity
         Console.WriteLine("");
         _promptListing = RandomPromptListing();
         Console.WriteLine("List as many responses you can to the following prompt:");
+        Console.WriteLine("");
         Console.WriteLine($"--- {_promptListing} ---");
     }
 

@@ -4,7 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello Develop04 World!");
         Activity activity = new Activity();
         BreathingActivity breathing = new BreathingActivity();
         ReflectionActivity reflection = new ReflectionActivity();
@@ -16,7 +15,6 @@ class Program
         while (_choice != "4") 
         {
             Console.Clear();
-            // Console.WriteLine("");
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Start breathing activity");
             Console.WriteLine("  2. Start reflecting activity");
@@ -27,8 +25,6 @@ class Program
 
             if (_choice == "1") 
             {
-                // BreathingActivity breathing = new BreathingActivity();
-                // Activity activity = new Activity("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
                 Console.Clear();
                 activity.DisplayStartingMessage("Breathing Activity", "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.");
                 _time = Console.ReadLine();
@@ -42,7 +38,6 @@ class Program
             }
             else if (_choice == "2")
             {
-                // ReflectionActivity reflection = new ReflectionActivity();
                 Console.Clear();
                 activity.DisplayStartingMessage("Reflection Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
                 _time = Console.ReadLine();
@@ -69,7 +64,6 @@ class Program
             }
             else if (_choice == "3")
             {
-                // ListingActivity listing = new ListingActivity();
                 Console.Clear();
                 activity.DisplayStartingMessage("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
                 _time = Console.ReadLine();
@@ -86,6 +80,7 @@ class Program
                 Console.Write($"You may begin in: ");
                 activity.PausingWithCountdown();
 
+                Console.WriteLine("");
                 listing.GetUserInput();
 
                 activity.DisplayEndingMessage(listing.GetDuration(), "Listing Activity");

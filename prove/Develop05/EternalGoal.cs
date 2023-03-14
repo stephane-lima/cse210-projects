@@ -1,28 +1,31 @@
-using System;
-using System.IO;
-
-public class EternalGoal : Goals
+public class EternalGoal : Goal
 {
-    Entry entry = new Entry();
-    public string _entry;
-    public void AddGoal()
+    private int _timesAccomplished;
+    public EternalGoal(string name, string description, int timesAccomplished, int points) : base(name, description, points, false)
     {
-        //GetInfo();
-
-        // _entry = $"Eternal Goal:{_name},{_description},{_points}";
-        // _entry = "Eternal Goal";
-        entry._entries.Add(_entry);
-        Console.WriteLine(_entry);
-        // Console.WriteLine($"Name: {_name}");
-        // Console.WriteLine($"Description: {_description}");
-        // Console.WriteLine($"Points: {_points}");
+        _type = 2;
+        _timesAccomplished = timesAccomplished;
     }
-    // public override bool IsCompleted()
-    // {
+    public override void SetIsCompleted()
+    {
+        _timesAccomplished += 1;
+        _isCompleted = false;
+        Console.WriteLine($"Congratulations! You earned {_points} points");
 
-    // }
-    // public override int RecordEvent()
-    // {
-
-    // }
+    }
+    public override void DisplayGoal(int option)
+    {
+        if (option == 0)
+        {
+            Console.WriteLine($"[ ] {_name} ({_description}) -- Times accomplished: {_timesAccomplished}");
+        }
+        else
+        {
+            Console.WriteLine($"{_name}");
+        }
+    }
+    public override string GetStringRep()
+    {
+        return $"{_type}|{_name}|{_description}|{_timesAccomplished}|{_points}";
+    }
 }

@@ -15,7 +15,7 @@ class Program
         order1.ShippingLabel(customer1);
 
         Console.WriteLine();
-        Console.WriteLine($"---------------------");
+        Console.WriteLine($"-------------------------------------------------------------------------");
         Product product2 = new Product("Blue Sweatshirt", "0003BS", 35, 1);
         Product product3 = new Product("Bomber Jacket", "001XZY", 180, 1);
         Address address2 = new Address("123 Main Street", "Montreal", "QC", "Canada");
@@ -23,9 +23,16 @@ class Program
         Order order2 = new Order(customer2);
         order2.AddProduct(product2);
         order2.AddProduct(product3);
+
+        Console.WriteLine("Packing Label:");
         order2.PackingLabel();
+
+        Console.WriteLine("");
         Console.WriteLine($"Shipping: ${order2.ShippingCost()}");
         Console.WriteLine($"Subtotal: ${order2.OrderTotal()}");
+
+        Console.WriteLine("");
+        Console.WriteLine("Shipping Label:");
         order2.ShippingLabel(customer2);
     }
 }

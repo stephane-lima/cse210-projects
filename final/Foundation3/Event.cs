@@ -22,8 +22,8 @@ class Event
     {
         Console.WriteLine($"Standard details:");
         // Console.WriteLine("");
-        Console.WriteLine($"Title: '{_eventTitle}'");
-        Console.WriteLine($"Description: --{_destription}--");
+        Console.WriteLine($"Title: {_eventTitle}");
+        Console.WriteLine($"Description: {_destription}");
         Console.WriteLine($"Date: {_date} {_time}");
         _address.DisplayAddress();
     }
@@ -35,8 +35,8 @@ class Event
     {
         Console.WriteLine($"Short description:");
         // Console.WriteLine("");
-        Console.WriteLine($"Event: *{_eventType}*");
-        Console.WriteLine($"Title: '{_eventTitle}'");
+        Console.WriteLine($"Event: {_eventType}");
+        Console.WriteLine($"Title: {_eventTitle}");
         Console.WriteLine($"Date: {_date}");
     }
 

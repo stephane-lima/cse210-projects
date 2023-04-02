@@ -14,10 +14,10 @@ class Lecture : Event
     public void LectureFullDetails()
     {
         Console.WriteLine($"Full details:");
-        Console.WriteLine($"Event: *{_eventType}*");
-        Console.WriteLine($"Title: '{_eventTitle}'");
+        Console.WriteLine($"Event: {_eventType}");
+        Console.WriteLine($"Title: {_eventTitle}");
         Console.WriteLine($"Speaker: {_speakerName}");
-        Console.WriteLine($"Description: --{_destription}--");
+        Console.WriteLine($"Description: {_destription}");
         Console.WriteLine($"Available seats: {_capacity}");
         Console.WriteLine($"Date: {_date} {_time}");
         _address.DisplayAddress();

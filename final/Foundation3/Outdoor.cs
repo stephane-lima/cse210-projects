@@ -12,9 +12,9 @@ class Outdoor : Event
     public void OutdoorFullDetails()
     {
         Console.WriteLine($"Full details:");
-        Console.WriteLine($"Event: *{_eventType}*");
-        Console.WriteLine($"Title:'{_eventTitle}'");
-        Console.WriteLine($"Description: --{_destription}--");
+        Console.WriteLine($"Event: {_eventType}");
+        Console.WriteLine($"Title: {_eventTitle}");
+        Console.WriteLine($"Description: {_destription}");
         Console.WriteLine($"Weather: {_weather}");
         Console.WriteLine($"Date: {_date} {_time}");
         _address.DisplayAddress();

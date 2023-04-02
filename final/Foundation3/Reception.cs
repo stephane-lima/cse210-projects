@@ -12,11 +12,11 @@ class Reception : Event
     public void ReceptionFullDetails()
     {
         Console.WriteLine($"Full details:");
-        Console.WriteLine($"Event: *{_eventType}*");
-        Console.WriteLine($"Title:'{_eventTitle}'");
-        Console.WriteLine($"Description: --{_destription}--");
+        Console.WriteLine($"Event: {_eventType} ");
+        Console.WriteLine($"Title: {_eventTitle}");
+        Console.WriteLine($"Description: {_destription}");
         Console.WriteLine($"Date: {_date} {_time}");
         _address.DisplayAddress();
-        Console.WriteLine($"Please RSVP @{_emailRSVP}");
+        Console.WriteLine($"Please RSVP: {_emailRSVP}");
     }
 }

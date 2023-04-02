@@ -31,7 +31,7 @@ class Activity
         double _distance = GetDistance();
         double _speed = GetSpeed();
         double _pace = GetPace();
-        Console.WriteLine($"{_date} {_activityType} ({_minutes} min)- Distance {_distance.ToString("F1")} km, Speed {_speed.ToString("F1")} kph, Pace: {_pace.ToString("F1")} min per km");
+        Console.WriteLine($"{_date} {_activityType} ({_minutes} min)- Distance: {_distance.ToString("N2")} km, Speed: {_speed.ToString("N2")} kph, Pace: {_pace.ToString("N2")} min per km");
     }
 
 }
